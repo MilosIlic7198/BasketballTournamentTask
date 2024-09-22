@@ -18,8 +18,11 @@ The group stage rules are:
 The group stage consists of each team playing with the remaining three teams from their group. 
 
 Teams get: 
+
 2 points to win, 
+
 1 point for a loss, 
+
 0 points for defeat by surrender. 
 
 The teams within the group are ranked based on the number of points. 
@@ -66,12 +69,15 @@ Example output (your display may be formatted differently, it doesn't have to be
 
 ## Qualification Stage
 
-The teams that qualified for the quarter-finals will be divided into four hats:
+The teams that qualified for the quarter-finals will be divided into four hats: 
 
-Hat D: Teams ranked 1 and 2.
-Hat E: Teams ranked 3 and 4.
-Hat F: Teams ranked 5 and 6.
-Hat G: Teams ranked 7 and 8.
+Hat D: Teams ranked 1 and 2. 
+
+Hat E: Teams ranked 3 and 4. 
+
+Hat F: Teams ranked 5 and 6. 
+
+Hat G: Teams ranked 7 and 8. 
 
 Teams from Hat D are randomly paired with teams from Hat G, and teams from Hat E with teams from Hat F to form the quarter-final pairings. 
 A very important proposition is that teams that played against each other in the group stage cannot meet in the quarter-finals.
