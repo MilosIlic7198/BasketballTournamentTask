@@ -31,6 +31,7 @@ In the output, show the results of all group stage matches by rounds, then the r
 Example output (your display may be formatted differently, it doesn't have to be the same):
 
 ### Group Stage - 1st Round:
+
 #### Group A:
 - Canada - Greece (85:79)
 - Australia - Spain (92:80)
@@ -39,16 +40,13 @@ Example output (your display may be formatted differently, it doesn't have to be
 - Germany - Japan (97:77)
 - France - Brazil (78:66)
 
----
-
 ### Final Ranking in Groups:
+
 #### Group A (Name - Wins/Losses/Points/Points Scored/Points Received/Point Difference):
 1. Canada   | 3 / 0 / 6  / 267 / 247 / +20
 2. Australia | 2 / 1 / 4  / 246 / 250 / -4
 3. Greece    | 2 / 1 / 4  / 233 / 241 / -8
 4. Spain     | 2 / 1 / 4  / 249 / 257 / -8
-
----
 
 ## Qualification Stage
 
