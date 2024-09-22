@@ -1,6 +1,3 @@
-import { loadExhibitionsData, loadGroupsData } from './data.js';
+import { runTournament } from './tournament.js';
 
-const exibitions = loadExhibitionsData();
-const groups = loadGroupsData();
-
-console.log(exibitions, groups);
+runTournament();
