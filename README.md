@@ -9,23 +9,29 @@ The description of the task is given below...
 
 ## Group Stage
 
-Groups and teams are given in the groups.json file. Country name information, ISO-3166 codes, and FIBA ​​ranking prior to the start of the Olympic Games are provided there.
+Groups and teams are given in the groups.json file. Country name information, ISO-3166 codes, and FIBA ​​ranking prior to the start of the Olympic Games are provided there. 
 
-It is necessary to simulate the result of all the matches of the group stage and finally to rank the teams within the group according to the propositions of the competition. Determine the results of the matches so that the probability of a team's victory and defeat is correlated with the difference in their positions in the FIBA ​​ranking.
+It is necessary to simulate the result of all the matches of the group stage and finally to rank the teams within the group according to the propositions of the competition. Determine the results of the matches so that the probability of a team's victory and defeat is correlated with the difference in their positions in the FIBA ​​ranking. 
 
-The group stage rules are:
-The group stage consists of each team playing with the remaining three teams from their group. Teams get:
+The group stage rules are: 
+
+The group stage consists of each team playing with the remaining three teams from their group. Teams get: 
 2 points to win,
 1 point for a loss,
 0 points for defeat by surrender.
+
 The teams within the group are ranked based on the number of points. 
+
 In the event that two teams from the same group have the same number of points, the result of the mutual meeting will be used as a ranking criterion. 
 In the event that 3 teams from the same group have the same number of points, the criteria for ranking will be the difference in points in mutual games between those 3 teams.
-At the end of the group stage, the first-placed, second-placed and third-placed teams from all groups are ranked from 1 to 9:
-The first-placed teams from groups A, B and C are ranked among themselves primarily by the number of points, then the score difference (in case of an equal number of points) and then the number of buckets scored (in the case of an equal number of points and score difference) in order to be assigned ranks 1 , 2 and 3.
-The second-placed teams from groups A, B and C are ranked among themselves according to the same principle in order to be assigned ranks 4, 5 and 6.
-The third-placed teams from groups A, B and C are ranked among themselves according to the same principle in order to be assigned ranks 7, 8 and 9.
-The teams ranked from 1 to 8 go to the elimination stage, the team ranked 9 does not continue the competition.
+
+At the end of the group stage, the first-placed, second-placed and third-placed teams from all groups are ranked from 1 to 9: 
+
+The first-placed teams from groups A, B and C are ranked among themselves primarily by the number of points, then the score difference (in case of an equal number of points) and then the number of buckets scored (in the case of an equal number of points and score difference) in order to be assigned ranks 1 , 2 and 3. 
+The second-placed teams from groups A, B and C are ranked among themselves according to the same principle in order to be assigned ranks 4, 5 and 6. 
+The third-placed teams from groups A, B and C are ranked among themselves according to the same principle in order to be assigned ranks 7, 8 and 9. 
+The teams ranked from 1 to 8 go to the elimination stage, the team ranked 9 does not continue the competition. 
+
 In the output, show the results of all group stage matches by rounds, then the ranking by groups and which 8 teams have advanced.
 
 Example output (your display may be formatted differently, it doesn't have to be the same):
@@ -40,6 +46,8 @@ Example output (your display may be formatted differently, it doesn't have to be
 - Germany - Japan (97:77)
 - France - Brazil (78:66)
 
+#### ---
+
 ### Final Ranking in Groups:
 
 #### Group A (Name - Wins/Losses/Points/Points Scored/Points Received/Point Difference):
@@ -47,6 +55,8 @@ Example output (your display may be formatted differently, it doesn't have to be
 2. Australia | 2 / 1 / 4  / 246 / 250 / -4
 3. Greece    | 2 / 1 / 4  / 233 / 241 / -8
 4. Spain     | 2 / 1 / 4  / 249 / 257 / -8
+
+#### ---
 
 ## Qualification Stage
 
