@@ -6,9 +6,13 @@ class TournamentService {
     }
 
     simulateGroupStage() {
+        console.log(this.groups);
+        console.log('=================================================');
         console.log(this.groups.A[0].stats);
+        console.log('=================================================');
         console.log(this.groups.A[0].opponents);
-        console.log(this.groups.A[0].opponents.USA);
+        console.log('=================================================');
+        console.log(this.groups.A[0].exibitions.USA);
     }
 }
 

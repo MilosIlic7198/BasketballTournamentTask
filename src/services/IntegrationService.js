@@ -1,3 +1,5 @@
+import Team from '../models/Team.js';
+
 import { getResult } from '../utils/Score.js';
 
 class IntegrationService {
@@ -8,36 +10,34 @@ class IntegrationService {
 
     integrateTeamStats() {
         for (const group in this.groups) {
-            for (const team of this.groups[group]) {
-                this.initializeStats(team);
-            };
+            for (let i = 0; i < this.groups[group].length; i++) {
+                this.groups[group][i] = this.initializeStats(this.groups[group][i]);
+            }
         };
         return this.groups;
     }
 
-    initializeStats(team) {
-        team.stats = { wins: 0, losses: 0, points: 0, scored: 0, received: 0 };
-        team.opponents = this.integrateExibitionsData(team.ISOCode);
+    initializeStats(teamData) {
+        return new Team(teamData, this.integrateExibitionsData(teamData.ISOCode));
     }
 
     integrateExibitionsData(teamISOCode) {
-        const exibitionMatches = this.exibitions[teamISOCode] || [];
-        const matches = {};
+        const teamExibitionMatches = this.exibitions[teamISOCode] || [];
+        const teamExibitions = {};
 
-        exibitionMatches.forEach(match => {
+        teamExibitionMatches.forEach(match => {
             const opponent = match.Opponent;
             const [teamScore, opponentScore] = match.Result.split('-').map(Number);
             const result = getResult(teamScore, opponentScore);
 
-            if (!matches[opponent]) {
-                matches[opponent] = { matches: [], matchCount: 0, stage: 'exibition' };
+            if (!teamExibitions[opponent]) {
+                teamExibitions[opponent] = [];
             }
 
-            matches[opponent].matches.push({ teamScore, opponentScore, result });
-            matches[opponent].matchCount += 1;
+            teamExibitions[opponent].push({ teamScore, opponentScore, result });
         });
 
-        return matches;
+        return teamExibitions;
     }
 }
 
