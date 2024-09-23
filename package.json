@@ -2,10 +2,10 @@
   "name": "basketballtournamenttask",
   "version": "1.0.0",
   "description": "Write a JavaScript program to simulate a basketball tournament at the Olympic Games. You will need to simulate the group stage and the elimination stage of the tournament.\r The task needs to be done using only JavaScript without the use of external packages.\r The task is started with the command: npm start\r Then it shows the tournament simulation in the std output.",
-  "main": "index.js",
+  "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "start" : "node index.js",
+    "start" : "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
