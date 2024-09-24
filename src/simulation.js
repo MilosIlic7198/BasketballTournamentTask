@@ -7,4 +7,5 @@ const groups = loadGroupsData();
 export function runSimulation() {
     const tournament = new TournamentService(groups, exibitions);
     tournament.simulateGroupStage();
+    tournament.log();
 }

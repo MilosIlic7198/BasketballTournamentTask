@@ -1,4 +1,5 @@
 import IntegrationService from './IntegrationService.js';
+import { generateGroupMatchesWithRoundRobin} from '../utils/Matchmaker.js';
 
 class TournamentService {
     constructor(groups, exibitions) {
@@ -6,6 +7,20 @@ class TournamentService {
     }
 
     simulateGroupStage() {
+        let groupMatches = {};
+        for (const group in this.groups) {
+            const teams = this.groups[group];
+            groupMatches[group] = generateGroupMatchesWithRoundRobin(teams);
+        }
+        console.log(groupMatches.A[0].matches);
+        console.log('=================================================');
+        console.log(groupMatches.A[1].matches);
+        console.log('=================================================');
+        console.log(groupMatches.A[2].matches);
+        console.log('=================================================');
+    }
+
+    log() {
         console.log(this.groups);
         console.log('=================================================');
         console.log(this.groups.A[0].stats);
