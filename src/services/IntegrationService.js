@@ -1,6 +1,6 @@
 import Team from '../models/Team.js';
 
-import { getResult } from '../utils/Score.js';
+import { getResult } from '../utils/helpers.js';
 
 class IntegrationService {
     constructor(groups, exibitions) {
