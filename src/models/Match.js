@@ -9,7 +9,7 @@ class Match {
         this.withdrew = null;
     }
 
-    generateMatchResult() {
+    generateMatchResult(stage) {
         const formA = this.teamA.calculateTeamForm();
         const formB = this.teamB.calculateTeamForm();
 
@@ -37,6 +37,12 @@ class Match {
                 }
             }
         }
+        this.teamA.updateTeamStats(scoreA, scoreB, withdrew);
+        this.teamB.updateTeamStats(scoreB, scoreA, withdrew === 'A' ? 'B' : 'A');
+
+        this.teamA.updateOpponents(this.teamB.ISOCode, scoreA, scoreB, stage);
+        this.teamB.updateOpponents(this.teamA.ISOCode, scoreB, scoreA, stage);
+
         this.teamAScore = scoreA;
         this.teamBScore = scoreB;
         this.withdrew = withdrew;

@@ -30,6 +30,36 @@ class Team {
     
         return formScore;
     }
+
+    updateTeamStats(teamScore, opponentScore, withdrew) {
+        if (withdrew === 'A') {
+            this.stats.losses++;
+            this.stats.withdraws++;
+        } else if (withdrew === 'B') {
+            this.stats.wins++;
+            this.stats.points += 2;
+        } else {
+            if (teamScore > opponentScore) {
+                this.stats.wins++;
+                this.stats.points += 2;
+            } else {
+                this.stats.losses++;
+                this.stats.points += 1;
+            }
+        }
+        this.stats.scored += teamScore;
+        this.stats.received += opponentScore;
+        this.stats.difference = this.stats.scored - this.stats.received;
+    }
+
+    updateOpponents(opponentISOCode, teamScore, opponentScore, stage) {
+        if (!this.opponents[opponentISOCode]) {
+            this.opponents[opponentISOCode] = { matches: [], matchCount: 0, stage: null };
+        }
+        this.opponents[opponentISOCode].stage = stage;
+        ++this.opponents[opponentISOCode].matchCount;
+        this.opponents[opponentISOCode].matches.push({ teamScore: teamScore, opponentScore: opponentScore, result: teamScore > opponentScore ? 'W' : 'L' });
+    }
 }
 
 export default Team;

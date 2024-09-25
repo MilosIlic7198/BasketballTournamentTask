@@ -9,7 +9,7 @@ class TournamentService {
     simulateGroupStage() {
         let groupMatches = {};
         for (const group in this.groups) {
-            groupMatches[group] = new MatchService(this.groups[group]).teamsMatchGenerator();
+            groupMatches[group] = new MatchService(this.groups[group]).generateGroupMatches();
         }
 
         let rounds = {};
@@ -43,10 +43,18 @@ class TournamentService {
     log() {
         console.log(this.groups);
         console.log('=================================================');
+        console.log(this.groups.A[2].stats);
+        console.log('================================================= GREECE =================================================');
         console.log(this.groups.A[0].stats);
-        console.log('=================================================');
+        console.log('================================================= CANADA =================================================');
         console.log(this.groups.A[0].opponents);
         console.log('=================================================');
+        console.log(this.groups.A[0].opponents.ESP);
+        console.log('================================================= ESP =================================================');
+        console.log(this.groups.A[0].opponents.GRE);
+        console.log('================================================= GRE =================================================');
+        console.log(this.groups.A[0].opponents.AUS);
+        console.log('================================================= AUS =================================================');
         console.log(this.groups.A[0].exibitions);
         console.log('=================================================');
         console.log(this.groups.A[0].exibitions.USA);

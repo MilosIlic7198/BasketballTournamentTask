@@ -1,39 +1,24 @@
+import RoundRobinScheduler from "../plugins/RoundRobinScheduler.js";
 import Match from "../models/Match.js";
 
 class MatchService {
     constructor(teams) {
         this.teams = teams;
+        this.scheduler = new RoundRobinScheduler(teams);
     }
 
-    teamsMatchGenerator() {
-        return this.teamsMatchmakerWithRoundRobin();
-    }
+    generateGroupMatches() {
+        const gamesByRound = this.scheduler.generateSchedule();
+        return gamesByRound.map(round => {
 
-    teamsMatchmakerWithRoundRobin() {
-        const gamesByRound = [];
-        const numTeams = this.teams.length;
-        const numRounds = numTeams - 1;
-        const matchesPerRound =  numTeams / 2;
-    
-        for (let round = 0; round < numRounds; round++) {
-            let roundMatches = [];
-
-            for (let i = 0; i < matchesPerRound; i++) {
-                let home = (round + i) % (numTeams - 1);
-                let away = (numTeams - 1 - i + round) % (numTeams - 1);
-                
-                if (i === 0) {
-                    away = numTeams - 1;
-                }
-                const match = new Match(this.teams[home], this.teams[away]).generateMatchResult();
-                roundMatches.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
-            }
-            gamesByRound.push({
-                round: round + 1,
-                matches: roundMatches
+            const matches = round.matches.map(match => {
+                const matchInstance = new Match(match.home, match.away);
+                const result = matchInstance.generateMatchResult('group');
+                console.log(matchInstance);
+                return `${result.teamA.Team} - ${result.teamB.Team} (${result.teamAScore}:${result.teamBScore})`;
             });
-        }
-        return gamesByRound;
+            return { round: round.round, matches };
+        });
     }
 }
 
