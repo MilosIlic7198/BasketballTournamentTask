@@ -54,13 +54,21 @@ class TournamentService {
             });
             groupRankings[group] = teams;
         }
-        console.log(groupRankings);
-        console.log('================================================= GROUP RANKINGS =================================================');
+
+        console.log("Final ranking in groups:");
+        for (const group in groupRankings) {
+            console.log(`    Group ${group} (Name | Wins/Losses/Points/Points scored/Points received/Point difference):`);
+            groupRankings[group].forEach((team, index) => {
+                console.log(`        ${index + 1}. ${team.Team} | ${team.stats.wins} / ${team.stats.losses} / ${team.stats.points} / ${team.stats.scored} / ${team.stats.received} / ${team.stats.difference}`);
+            });
+        }
+        console.log();
     }
 
     log() {
         console.log(this.groups);
         console.log('=================================================');
+        console.log(this.groups.A[0].Team);
         console.log(this.groups.A[0].stats);
         console.log('================================================= CANADA =================================================');
         console.log(this.groups.A[0].opponents);
