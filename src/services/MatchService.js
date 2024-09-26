@@ -14,7 +14,7 @@ class MatchService {
             const matches = round.matches.map(match => {
                 const matchInstance = new Match(match.home, match.away);
                 const result = matchInstance.generateMatchResult('group');
-                console.log(matchInstance);
+
                 return `${result.teamA.Team} - ${result.teamB.Team} (${result.teamAScore}:${result.teamBScore})`;
             });
             return { round: round.round, matches };

@@ -37,8 +37,9 @@ class Match {
                 }
             }
         }
+
         this.teamA.updateTeamStats(scoreA, scoreB, withdrew);
-        this.teamB.updateTeamStats(scoreB, scoreA, withdrew === 'A' ? 'B' : 'A');
+        this.teamB.updateTeamStats(scoreB, scoreA, withdrew === 'A' ? 'B' : withdrew === 'B' ? 'A' : null);
 
         this.teamA.updateOpponents(this.teamB.ISOCode, scoreA, scoreB, stage);
         this.teamB.updateOpponents(this.teamA.ISOCode, scoreB, scoreA, stage);

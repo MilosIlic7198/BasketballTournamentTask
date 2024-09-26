@@ -43,8 +43,6 @@ class TournamentService {
     log() {
         console.log(this.groups);
         console.log('=================================================');
-        console.log(this.groups.A[2].stats);
-        console.log('================================================= GREECE =================================================');
         console.log(this.groups.A[0].stats);
         console.log('================================================= CANADA =================================================');
         console.log(this.groups.A[0].opponents);
