@@ -59,11 +59,11 @@ Example output (your display may be formatted differently, it doesn't have to be
 
 ### Final ranking in groups:
 
-#### Group A (Name - Wins/Losses/Points/Points Scored/Points Received/Point Difference):
-1. Canada   | 3 / 0 / 6  / 267 / 247 / +20
+#### Group A (Name | Wins/Losses/Points/Points Scored/Points Received/Point Difference):
+1. Canada | 3 / 0 / 6  / 267 / 247 / +20
 2. Australia | 2 / 1 / 4  / 246 / 250 / -4
-3. Greece    | 2 / 1 / 4  / 233 / 241 / -8
-4. Spain     | 2 / 1 / 4  / 249 / 257 / -8
+3. Greece | 2 / 1 / 4  / 233 / 241 / -8
+4. Spain | 2 / 1 / 4  / 249 / 257 / -8
 
 #### ---
 
