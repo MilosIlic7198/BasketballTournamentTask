@@ -7,7 +7,7 @@ Then it shows the tournament simulation in the std output.
 
 The description of the task is given below...
 
-## Group Stage
+## Group stage
 
 Groups and teams are given in the groups.json file. Country name information, ISO-3166 codes, and FIBA ​​ranking prior to the start of the Olympic Games are provided there. 
 
@@ -45,7 +45,7 @@ In the output, show the results of all group stage matches by rounds, then the r
 
 Example output (your display may be formatted differently, it doesn't have to be the same):
 
-### Group Stage - 1st Round:
+### Group stage - 1st Round:
 
 #### Group A:
 - Canada - Greece (85:79)
@@ -57,17 +57,17 @@ Example output (your display may be formatted differently, it doesn't have to be
 
 #### ---
 
-### Final Ranking in Groups:
+### Final ranking in groups:
 
-#### Group A (Name - Wins/Losses/Points/Points Scored/Points Received/Point Difference):
-1. Canada   | 3 / 0 / 6  / 267 / 247 / +20
+#### Group A (Name | Wins/Losses/Points/Points Scored/Points Received/Point Difference):
+1. Canada | 3 / 0 / 6  / 267 / 247 / +20
 2. Australia | 2 / 1 / 4  / 246 / 250 / -4
-3. Greece    | 2 / 1 / 4  / 233 / 241 / -8
-4. Spain     | 2 / 1 / 4  / 249 / 257 / -8
+3. Greece | 2 / 1 / 4  / 233 / 241 / -8
+4. Spain | 2 / 1 / 4  / 249 / 257 / -8
 
 #### ---
 
-## Qualification Stage
+## Qualification stage
 
 The teams that qualified for the quarter-finals will be divided into four hats: 
 
@@ -102,31 +102,31 @@ Example output:
 - Brazil
 - Greece
 
-### Elimination Stage:
+### Elimination stage:
 - France - Canada
 - Germany - Greece
 
 - USA - Brazil
 - Serbia - Australia
 
-## Elimination Stage
+## Elimination stage
 
 The tournament continues with a standard elimination format, where the winners advance to the semi-finals and the losers are eliminated. 
 The winners of the semi-finals go to the final, while the losers play for the bronze medal.
 
-Show all elimination stage matches by round (quarter-finals, semi-finals, 3rd place match, finals). 
+Show all elimination stage matches by round (quarter-finals, semi-finals, third place match, finals). 
 After that, show the teams that won medals.
 
 Example output:
 
-### Quarterfinals:
+### Quarter-finals:
 - France - Canada (82: 73)
 - Germany - Greece (76: 63)
 
 - USA - Brazil (122: 87)
 - Serbia - Australia (95: 90)
 
-### Semi-Finals:
+### Semi-finals:
 - France - Germany (73: 69)
 - USA - Serbia (95: 91)
 
