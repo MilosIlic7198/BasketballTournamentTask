@@ -42,23 +42,17 @@ class TournamentService {
         }
     }
 
-    rankTeams() {
-        const groupRankings = {};
+    simulateGroupStandings() {
+        const groupStandings = {};
         
         for (const group in this.groups) {
-            const teams = [...this.groups[group]];
-
-            teams.sort((a, b) => {
-                if (a.stats.points !== b.stats.points) return b.stats.points - a.stats.points;
-                return 0;
-            });
-            groupRankings[group] = teams;
+            groupStandings[group] = new MatchService(this.groups[group]).generateGroupStandings();
         }
 
-        console.log("Final ranking in groups:");
-        for (const group in groupRankings) {
+        console.log("Final standings in groups:");
+        for (const group in groupStandings) {
             console.log(`    Group ${group} (Name | Wins/Losses/Points/Points scored/Points received/Point difference):`);
-            groupRankings[group].forEach((team, index) => {
+            groupStandings[group].forEach((team, index) => {
                 console.log(`        ${index + 1}. ${team.Team} | ${team.stats.wins} / ${team.stats.losses} / ${team.stats.points} / ${team.stats.scored} / ${team.stats.received} / ${team.stats.difference}`);
             });
         }
