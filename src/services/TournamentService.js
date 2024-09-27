@@ -46,7 +46,7 @@ class TournamentService {
         const groupRankings = {};
         
         for (const group in this.groups) {
-            const teams = this.groups[group];
+            const teams = [...this.groups[group]];
 
             teams.sort((a, b) => {
                 if (a.stats.points !== b.stats.points) return b.stats.points - a.stats.points;
@@ -68,7 +68,6 @@ class TournamentService {
     log() {
         console.log(this.groups);
         console.log('=================================================');
-        console.log(this.groups.A[0].Team);
         console.log(this.groups.A[0].stats);
         console.log('================================================= CANADA =================================================');
         console.log(this.groups.A[0].opponents);

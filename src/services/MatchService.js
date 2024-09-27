@@ -3,7 +3,6 @@ import Match from "../models/Match.js";
 
 class MatchService {
     constructor(teams) {
-        this.teams = teams;
         this.scheduler = new RoundRobinScheduler(teams);
     }
 
