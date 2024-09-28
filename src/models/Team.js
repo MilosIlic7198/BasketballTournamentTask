@@ -4,7 +4,7 @@ class Team {
         this.Team = teamData.Team;
         this.FIBARanking = teamData.FIBARanking;
         this.exibitions = exibitions;
-        this.stats = { wins: 0, losses: 0, points: 0, scored: 0, received: 0, withdraws: 0 };
+        this.stats = { wins: 0, losses: 0, points: 0, scored: 0, received: 0, difference: 0, withdraws: 0 };
         this.opponents = {};
     }
 

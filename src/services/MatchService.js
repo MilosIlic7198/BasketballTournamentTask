@@ -21,10 +21,9 @@ class MatchService {
     }
 
     generateGroupStandings() {
-        const teams = [...this.teams];
-        teams.sort((a, b) => {
+        this.teams.sort((a, b) => {
             if (a.stats.points !== b.stats.points) return b.stats.points - a.stats.points;
-            const tiedTeams = teams.filter(team => team.stats.points === a.stats.points);
+            const tiedTeams = this.teams.filter(team => team.stats.points === a.stats.points);
 
             if(tiedTeams.length === 2) {
                 const opponentData = tiedTeams[0].opponents[tiedTeams[1].ISOCode];
@@ -42,7 +41,7 @@ class MatchService {
             }
             return 0;
         });
-        return teams;
+        return this.teams;
     }
 
     tiebreaker(teams) {

@@ -8,5 +8,6 @@ export function runSimulation() {
     const tournament = new TournamentService(groups, exibitions);
     tournament.simulateGroupStage();
     tournament.simulateGroupStandings();
+    tournament.rankTeams();
     tournament.log();
 }
