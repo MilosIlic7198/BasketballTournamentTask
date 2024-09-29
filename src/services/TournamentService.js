@@ -1,11 +1,13 @@
 import IntegrationService from './IntegrationService.js';
 import MatchService from './MatchService.js';
+import { shuffle } from '../utils/helpers.js';
 
 class TournamentService {
     static rankings = [];
 
     constructor(groups, exibitions) {
         this.groups = new IntegrationService(groups, exibitions).integrateTeamStats();
+        this.combinations = {};
     }
 
     simulateGroupStage() {
@@ -71,6 +73,99 @@ class TournamentService {
             });
         }
         TournamentService.rankings.sort((a, b) => a.rank - b.rank);
+    }
+
+    simulateQualificationStage() {
+        const hats = this.createHats();
+
+        console.log("Hats:");
+        for (const hat in hats) {
+            const teams = hats[hat];
+            console.log(`    Hat ${hat}`);
+            teams.forEach(team => console.log(`        ${team.Team}`));
+        }
+        
+        const opponents = this.getOpponents();
+        this.combinations.pairsD_G = this.randomPair(hats.D, hats.G, opponents, 'qualification');
+        this.combinations.pairsE_F = this.randomPair(hats.E, hats.F, opponents, 'qualification');
+
+        console.log();
+        console.log("Elimination stage:");
+        this.combinations.pairsD_G.forEach(pair => {
+            console.log(`    ${pair.team1.Team} vs ${pair.team2.Team}`);
+        });
+        console.log();
+        this.combinations.pairsE_F.forEach(pair => {
+            console.log(`    ${pair.team1.Team} vs ${pair.team2.Team}`);
+        });
+    }
+
+    createHats() {
+        return {
+            D: TournamentService.rankings.filter(t => t.rank <= 2),
+            E: TournamentService.rankings.filter(t => t.rank >= 3 && t.rank <= 4),
+            F: TournamentService.rankings.filter(t => t.rank >= 5 && t.rank <= 6),
+            G: TournamentService.rankings.filter(t => t.rank >= 7 && t.rank <= 8),
+        };
+    }
+
+    getOpponents() {
+        const opponents = {};
+        TournamentService.rankings.forEach(team => {
+            opponents[team.ISOCode] = team.opponents;
+        });
+        return opponents;
+    }
+
+    randomPair(hat1, hat2, opponents = null, stage = null) {
+        let pairs = [];
+        hat1 = shuffle(hat1);
+        hat2 = shuffle(hat2);
+    
+        let index = 0;
+        const pairedTeams = new Set();
+    
+        while (pairs.length < 2  && index < hat1.length) {
+            const team1 = hat1[index];
+            const team2 = this.findEligibleTeam(hat2, team1, pairedTeams, opponents, stage);
+    
+            if (team2) {
+                this.addPair(pairs, team1, team2, pairedTeams);
+                index++;
+            } else {
+                hat2 = shuffle(hat2);
+                index = 0;
+                pairs = [];
+                pairedTeams.clear();
+            }
+        }
+        return pairs;
+    };
+
+    findEligibleTeam(hat2, team1, pairedTeams, opponents, stage) {
+        for (const team2 of hat2) {
+            if (pairedTeams.has(team2.ISOCode)) continue;
+    
+            if (this.isEligible(team1, team2, opponents, stage)) {
+                return team2;
+            }
+        }
+        return null;
+    }
+    
+    isEligible(team1, team2, opponents, stage) {
+        if (stage === 'qualification') {
+            return !opponents[team1.ISOCode] || 
+                   !opponents[team1.ISOCode][team2.ISOCode] || 
+                   opponents[team1.ISOCode][team2.ISOCode].stage !== 'group';
+        }
+        return true;
+    }
+
+    addPair(pairs, team1, team2, pairedTeams) {
+        pairs.push({ team1, team2 });
+        pairedTeams.add(team1.ISOCode);
+        pairedTeams.add(team2.ISOCode);
     }
 
     log() {

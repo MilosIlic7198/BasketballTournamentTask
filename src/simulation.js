@@ -9,5 +9,6 @@ export function runSimulation() {
     tournament.simulateGroupStage();
     tournament.simulateGroupStandings();
     tournament.rankTeams();
+    tournament.simulateQualificationStage();
     tournament.log();
 }
