@@ -10,5 +10,6 @@ export function runSimulation() {
     tournament.simulateGroupStandings();
     tournament.rankTeams();
     tournament.simulateQualificationStage();
+    tournament.simulateKnockoutStage();
     tournament.log();
 }

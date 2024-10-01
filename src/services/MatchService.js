@@ -81,6 +81,10 @@ class MatchService {
         }
         return teams.sort((a, b) => teamScores[b.ISOCode] - teamScores[a.ISOCode]);
     }
+
+    generateKnockoutMatches() {
+        return new Match(this.teams[0], this.teams[1]).generateMatchResult('knockout');
+    }
 }
 
 export default MatchService;
