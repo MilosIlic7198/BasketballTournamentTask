@@ -179,15 +179,13 @@ class TournamentService {
         const quarterfinalsMatches_E_F = [];
         
         this.combinations.pairsD_G.forEach(pair => {
-            const pairToArray = Object.values(pair);
-            const match = new MatchService(pairToArray).generateKnockoutMatches();
+            const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
             quarterfinalsMatches_D_G.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             winnersFromPairsD_G.push(match.teamAScore > match.teamBScore ? match.teamA : match.teamB);
         });
 
         this.combinations.pairsE_F.forEach(pair => {
-            const pairToArray = Object.values(pair);
-            const match = new MatchService(pairToArray).generateKnockoutMatches();
+            const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
             quarterfinalsMatches_E_F.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             winnersFromPairsE_F.push(match.teamAScore > match.teamBScore ? match.teamA : match.teamB);
         });
@@ -213,8 +211,7 @@ class TournamentService {
         const thirdPlacePair = {};
         
         semifinalPairs.forEach((pair, index) => {
-            const pairToArray = Object.values(pair);
-            const match = new MatchService(pairToArray).generateKnockoutMatches();
+            const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
             semifinalMatches.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             semifinalWinners[index === 0 ? 'teamA' : 'teamB'] = match.teamAScore > match.teamBScore ? match.teamA : match.teamB;
             thirdPlacePair[index === 0 ? 'teamA' : 'teamB'] = match.teamAScore > match.teamBScore ? match.teamB : match.teamA;
@@ -228,8 +225,7 @@ class TournamentService {
         
         let thirdPlaceWinner;
         
-        const thirdPlaceToArray = Object.values(thirdPlacePair);
-        const thirdPlaceMatch = new MatchService(thirdPlaceToArray).generateKnockoutMatches();
+        const thirdPlaceMatch = new MatchService([thirdPlacePair.teamA, thirdPlacePair.teamB]).generateKnockoutMatches();
         thirdPlaceWinner = thirdPlaceMatch.teamAScore > thirdPlaceMatch.teamBScore ? thirdPlaceMatch.teamA : thirdPlaceMatch.teamB;
 
         console.log('Third place match:');
@@ -238,10 +234,7 @@ class TournamentService {
         let finalsWinner;
         let secondPlaceWinner;
         
-        const finalsPair = { teamA: semifinalWinners.teamA, teamB: semifinalWinners.teamB};
-
-        const finalsPairToArray = Object.values(finalsPair);
-        const finalsMatch = new MatchService(finalsPairToArray).generateKnockoutMatches();
+        const finalsMatch = new MatchService([semifinalWinners.teamA, semifinalWinners.teamB]).generateKnockoutMatches();
         finalsWinner =  finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamA : finalsMatch.teamB;
         secondPlaceWinner = finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamB : finalsMatch.teamA;
         
