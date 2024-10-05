@@ -175,68 +175,41 @@ class TournamentService {
         const winnersFromPairsD_G = [];
         const winnersFromPairsE_F = [];
         
-        const quarterfinalsMatches_D_G = [];
-        const quarterfinalsMatches_E_F = [];
-        
+        console.log();
+        console.log('Quarter-finals:');
         this.combinations.pairsD_G.forEach(pair => {
             const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
-            quarterfinalsMatches_D_G.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
+            console.log(`        ${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             winnersFromPairsD_G.push(match.teamAScore > match.teamBScore ? match.teamA : match.teamB);
         });
-
+        console.log();
         this.combinations.pairsE_F.forEach(pair => {
             const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
-            quarterfinalsMatches_E_F.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
+            console.log(`        ${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             winnersFromPairsE_F.push(match.teamAScore > match.teamBScore ? match.teamA : match.teamB);
         });
 
-        console.log();
-        console.log('Quarter-finals:');
-        for (let i = 0; i < quarterfinalsMatches_D_G.length; i++) {
-            const match = quarterfinalsMatches_D_G[i];
-            console.log(`        ${match}`);
-        }
-        
-        console.log();
-        for (let i = 0; i < quarterfinalsMatches_E_F.length; i++) {
-            const match = quarterfinalsMatches_E_F[i];
-            console.log(`        ${match}`);
-        }
-
         const semifinalPairs = this.randomPair(winnersFromPairsD_G, winnersFromPairsE_F, null, 'knockout');
-
-        const semifinalWinners = {};
-        const semifinalMatches = [];
-        
+        const semifinalWinners = {};        
         const thirdPlacePair = {};
-        
+
+        console.log('Semi-finals:');
         semifinalPairs.forEach((pair, index) => {
             const match = new MatchService([pair.teamA, pair.teamB]).generateKnockoutMatches();
-            semifinalMatches.push(`${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
+            console.log(`        ${match.teamA.Team} - ${match.teamB.Team} (${match.teamAScore}:${match.teamBScore})`);
             semifinalWinners[index === 0 ? 'teamA' : 'teamB'] = match.teamAScore > match.teamBScore ? match.teamA : match.teamB;
             thirdPlacePair[index === 0 ? 'teamA' : 'teamB'] = match.teamAScore > match.teamBScore ? match.teamB : match.teamA;
         });
         
-        console.log('Semi-finals:');
-        for (let i = 0; i < semifinalMatches.length; i++) {
-            const match = semifinalMatches[i];
-            console.log(`        ${match}`);
-        }
-        
-        let thirdPlaceWinner;
-        
         const thirdPlaceMatch = new MatchService([thirdPlacePair.teamA, thirdPlacePair.teamB]).generateKnockoutMatches();
-        thirdPlaceWinner = thirdPlaceMatch.teamAScore > thirdPlaceMatch.teamBScore ? thirdPlaceMatch.teamA : thirdPlaceMatch.teamB;
+        const thirdPlaceWinner = thirdPlaceMatch.teamAScore > thirdPlaceMatch.teamBScore ? thirdPlaceMatch.teamA : thirdPlaceMatch.teamB;
 
         console.log('Third place match:');
         console.log(`        ${thirdPlaceMatch.teamA.Team} - ${thirdPlaceMatch.teamB.Team} (${thirdPlaceMatch.teamAScore}:${thirdPlaceMatch.teamBScore})`);
         
-        let finalsWinner;
-        let secondPlaceWinner;
-        
         const finalsMatch = new MatchService([semifinalWinners.teamA, semifinalWinners.teamB]).generateKnockoutMatches();
-        finalsWinner =  finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamA : finalsMatch.teamB;
-        secondPlaceWinner = finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamB : finalsMatch.teamA;
+        const finalsWinner =  finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamA : finalsMatch.teamB;
+        const secondPlaceWinner = finalsMatch.teamAScore > finalsMatch.teamBScore ? finalsMatch.teamB : finalsMatch.teamA;
         
         console.log('Finals:');
         console.log(`        ${finalsMatch.teamA.Team} - ${finalsMatch.teamB.Team} (${finalsMatch.teamAScore}:${finalsMatch.teamBScore})`);
